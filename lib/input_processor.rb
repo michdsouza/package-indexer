@@ -1,13 +1,15 @@
+require './lib/graph.rb'
+
 class InputProcessor
 
-  def initialize(input, graph)
-    @input = input
-    @graph = graph
+  def initialize
+    @graph ||= Graph.new
   end
 
-  def process
-    # raise error if @input is nil
-    command, package, dependencies = @input.chomp.split('|')
+  def process(input)
+    return "ERROR\n" if input.nil?
+
+    command, package, dependencies = input.chomp.split('|')
     case command
     when 'INDEX'
       message(@graph.add_from_command(package, dependency_array(dependencies)))
@@ -16,7 +18,7 @@ class InputProcessor
     when 'QUERY'
       message(@graph.query(package))
     else
-      "FAIL\n"
+      "ERROR\n"
     end
   end
 

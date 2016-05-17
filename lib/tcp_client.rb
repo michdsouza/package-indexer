@@ -4,5 +4,6 @@ hostname = 'localhost'
 port = 8080
 
 s = TCPSocket.open(hostname, port)
-s.write("INDEX|actionmailer|ruby\n")
-s.close
+s.write(nil)
+# s.write("INDEX REMOVE|a2ps|\n")
+# s.close

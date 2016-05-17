@@ -21,13 +21,14 @@ class Graph
     libraries.index(library)
   end
 
-  def dependency?(library_index)
+  def exists_as_dependency?(library_index)
     matrix.map { |a| a[library_index] == true }.any?
   end
 
   def remove(library)
     library_index = find_index(library)
-    return false unless can_be_removed?(library_index)
+    return true if removed?(library_index)
+    return false if exists_as_dependency?(library_index)
     remove_from_matrix(library_index)
     remove_from_libraries(library)
     true
@@ -52,9 +53,13 @@ class Graph
 
   private
 
-  def can_be_removed?(library_index)
-    !library_index.nil? && !dependency?(library_index)
+  def removed?(library_index)
+    library_index.nil?
   end
+
+  # def exists_as_dependency?(library_index)
+  #   !dependency?(library_index)
+  # end
 
   def remove_from_libraries(library)
     libraries.delete(library)
