@@ -34,6 +34,10 @@ class Graph
     true
   end
 
+   # For `INDEX` commands, the server returns `OK\n` if the package could be indexed 
+   # or if it was already present. 
+   # It returns `FAIL\n` if the package cannot be indexed because some of its dependencies 
+   # aren't indexed yet and need to be installed first.
   def add_from_command(library, dependencies=[])
     library_index = find_index(library)
     return true if library_index

@@ -29,7 +29,7 @@ class InputProcessor
   end
 
   def dependency_array(dependencies)
-    dependencies.nil? ? [] : [dependencies]
+    dependencies.nil? ? [] : dependencies.split(',')
   end
 
 end

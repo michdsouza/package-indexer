@@ -4,6 +4,6 @@ hostname = 'localhost'
 port = 8080
 
 s = TCPSocket.open(hostname, port)
-s.write(nil)
-# s.write("INDEX REMOVE|a2ps|\n")
-# s.close
+s.write("INDEX|pkg-config|\n")
+# s.write("INDEX|makedepend|pkg-config")
+# s.write("INDEX|openssl|makedepend,pkg-config")
