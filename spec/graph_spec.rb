@@ -73,18 +73,11 @@ describe Graph do
     end
 
     context 'when library cannot be removed' do
-      it 'raises an error' do
-        expect { graph.remove('something') }.to raise_error Graph::IndexError
+      it 'returns false' do
+        expect(graph.remove('something')).to eq false
       end 
     end
   end
-  
-
-
-
-
-
-
 
 	describe '#add_node' do
     it 'adds a new library' do

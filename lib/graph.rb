@@ -1,7 +1,7 @@
 class Graph
   class IndexError < StandardError; end
+  
   attr_accessor :libraries, :matrix
-
 
 	def initialize
     @libraries = []
@@ -11,6 +11,10 @@ class Graph
   def add(library)
     libraries << library
     matrix << []
+  end
+
+  def query(library)
+    !find_index(library).nil?
   end
 
   def find_index(library)
@@ -23,9 +27,10 @@ class Graph
 
   def remove(library)
     library_index = find_index(library)
-    raise IndexError.new('This library cannot be removed') unless can_be_removed?(library_index)
+    return false unless can_be_removed?(library_index)
     remove_from_matrix(library_index)
     remove_from_libraries(library)
+    true
   end
 
   def add_from_command(library, dependencies=[])

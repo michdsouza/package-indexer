@@ -4,5 +4,5 @@ hostname = 'localhost'
 port = 8080
 
 s = TCPSocket.open(hostname, port)
-s.write('INDEX|ceylon|\n')
+s.write("INDEX|actionmailer|ruby\n")
 s.close
