@@ -72,8 +72,4 @@ class Graph
     matrix.slice!(library_index)
   end
 
-  
-
- 
-
 end

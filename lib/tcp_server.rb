@@ -28,4 +28,10 @@ loop do
   end
 end
 
+# TODO: Refactor & write tests
+# Concurrency = 100
+# Comment code
+# README
+# Build script
+
 
