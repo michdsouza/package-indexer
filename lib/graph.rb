@@ -8,44 +8,26 @@ class Graph
 		@matrix = []
 	end
 
-  def add(library)
-    libraries << library
-    matrix << []
+  def index(library, dependencies=[])
+    return true if find_index(library)
+    return false if dependencies_not_indexed?(library, dependencies)
+    add(library)
+    library_index = find_index(library)
+    add_dependencies(library_index, dependencies) 
+    true
   end
 
-  def query(library)
-    !find_index(library).nil?
-  end
-
-  def find_index(library)
-    libraries.index(library)
-  end
-
-  def exists_as_dependency?(library_index)
-    matrix.map { |a| a[library_index] == true }.any?
-  end
-
-  def remove(library)
+  def remove(library, dependencies=[])
     library_index = find_index(library)
     return true if removed?(library_index)
-    return false if exists_as_dependency?(library_index)
+    return false if is_a_dependency?(library_index)
     remove_from_matrix(library_index)
     remove_from_libraries(library)
     true
   end
 
-   # For `INDEX` commands, the server returns `OK\n` if the package could be indexed 
-   # or if it was already present. 
-   # It returns `FAIL\n` if the package cannot be indexed because some of its dependencies 
-   # aren't indexed yet and need to be installed first.
-  def add_from_command(library, dependencies=[])
-    library_index = find_index(library)
-    return true if library_index
-    return false if !dependencies.empty? && !(dependencies - libraries).empty?
-    add(library)
-    library_index = find_index(library)
-    add_dependencies(library_index, dependencies) 
-    true
+  def query(library, dependencies=[])
+    find_index(library) != nil
   end
 
   def add_dependencies(library_index, dependencies)
@@ -53,6 +35,23 @@ class Graph
       dependency_index = find_index(dependency)
       matrix[library_index][dependency_index] = true
     end
+  end
+
+  def add(library)
+    libraries << library
+    matrix << []
+  end
+
+  def find_index(library)
+    libraries.index(library)
+  end
+
+  def dependencies_not_indexed?(library, dependencies)
+    !dependencies.empty? && !(dependencies - libraries).empty?
+  end
+
+  def is_a_dependency?(library_index)
+    matrix.map { |a| a[library_index] == true }.any?
   end
 
   private

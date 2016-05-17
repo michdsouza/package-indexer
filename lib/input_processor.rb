@@ -7,32 +7,22 @@ class InputProcessor
   end
 
   def process(input)
-    return "ERROR\n" unless valid?(input)
+    return "ERROR\n" if invalid?(input)
 
     command, package, dependencies = input.chomp.split('|')
-    case command
-    when 'INDEX'
-      message(@graph.add_from_command(package, dependency_array(dependencies)))
-    when 'REMOVE'
-      message(@graph.remove(package))
-    when 'QUERY'
-      message(@graph.query(package))
-    else
-      "ERROR\n"
-    end
+    command_sym = command.downcase.to_sym
+    @graph.respond_to?(command_sym) ? message(@graph.send(command_sym, package, to_array(dependencies))) : "ERROR\n"
   end
 
-  private
-
-  def valid?(input)
-    !input.nil? && input =~ /(.+)\|(.+)\|(.*)/
+  def invalid?(input)
+    input.nil? || input !~ /(.+)\|(.+)\|(.*)/
   end
 
   def message(result)
     result ? "OK\n" : "FAIL\n"
   end
 
-  def dependency_array(dependencies)
+  def to_array(dependencies)
     dependencies.nil? ? [] : dependencies.split(',')
   end
 
