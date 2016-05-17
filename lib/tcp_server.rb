@@ -17,20 +17,16 @@ processor = InputProcessor.new
 # end
 
 loop do
-  count = 0
   socket = server.accept
   while line = socket.gets
-    count = count + 1
-    puts "#{count}: #{line}"
     response = processor.process(line)
-    puts response
     socket.print response
   end
 end
 
 # TODO: Refactor & write tests
 # Concurrency = 100
-# Comment code
+# Comment code / Add logging
 # README
 # Build script
 

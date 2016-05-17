@@ -1,6 +1,4 @@
 class Graph
-  class IndexError < StandardError; end
-  
   attr_accessor :libraries, :matrix
 
 	def initialize
