@@ -32,6 +32,7 @@ count = 0
 
 socket = server.accept
 loop do
+  puts "Socket closed?: #{socket.closed?}"
   line = socket.gets
   count = count + 1
   response = processor.process(line)
