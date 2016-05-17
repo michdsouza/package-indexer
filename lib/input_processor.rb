@@ -19,7 +19,9 @@ class InputProcessor
   end
 
   def message(result)
-    result ? "OK\n" : "FAIL\n"
+    return "FAIL\n" unless result
+    "OK\n"
+    # result ? "OK\n" : "FAIL\n"
   end
 
   def to_array(dependencies)

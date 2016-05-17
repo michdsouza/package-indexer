@@ -5,7 +5,6 @@ module Operations
       return true if found?(package)
       return false if dependencies_absent?(package, dependencies)
       add_package(package, dependencies)
-      true
     end
 
     def add_package(package, dependencies)
