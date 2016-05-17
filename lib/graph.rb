@@ -61,10 +61,6 @@ class Graph
     library_index.nil?
   end
 
-  # def exists_as_dependency?(library_index)
-  #   !dependency?(library_index)
-  # end
-
   def remove_from_libraries(library)
     libraries.delete(library)
   end

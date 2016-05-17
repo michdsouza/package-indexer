@@ -7,7 +7,7 @@ class InputProcessor
   end
 
   def process(input)
-    return "ERROR\n" if input.nil?
+    return "ERROR\n" unless valid?(input)
 
     command, package, dependencies = input.chomp.split('|')
     case command
@@ -23,6 +23,10 @@ class InputProcessor
   end
 
   private
+
+  def valid?(input)
+    !input.nil? && input =~ /(.+)\|(.+)\|(.*)/
+  end
 
   def message(result)
     result ? "OK\n" : "FAIL\n"
