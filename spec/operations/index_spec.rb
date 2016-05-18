@@ -13,7 +13,7 @@ describe Operations::Index do
       subject { graph.index('package') }
 
       it { expect(subject).to eq true }
-      it { expect {subject}.to_not change(graph.libraries, :length) }
+      it { expect { subject }.to_not change(graph.libraries, :length) }
     end
 
     it 'returns false if dependencies are not indexed' do
@@ -41,9 +41,9 @@ describe Operations::Index do
   end
 
   describe '#add_dependencies' do
-    before(:each) do 
-      graph.index('dependency') 
-      graph.index('package') 
+    before(:each) do
+      graph.index('dependency')
+      graph.index('package')
     end
 
     it 'adds dependency to matrix' do

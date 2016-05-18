@@ -1,9 +1,8 @@
 module Operations
   module Remove
-
-    def remove(package, dependencies=[])
+    def remove(package, _dependencies = [])
       return true if absent?(package)
-      return false if is_dependency?(find(package))
+      return false if dependency?(find(package))
       remove_package(package)
     end
 
@@ -15,11 +14,11 @@ module Operations
 
     def remove_from_matrix(package_index)
       matrix.slice!(package_index)
-      matrix.each {|row| row.slice!(package_index) }
+      matrix.each { |row| row.slice!(package_index) }
     end
 
-    def is_dependency?(package_index)
+    def dependency?(package_index)
       matrix.map { |a| a[package_index] == true }.any?
-    end  
+    end
   end
 end

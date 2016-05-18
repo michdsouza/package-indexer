@@ -34,15 +34,15 @@ describe InputProcessor do
     end
 
     it 'returns false if input has extra pipes' do
-      expect(input_processor.valid_syntax?("INDEX|pkg|dep|boo|")).to eq false
+      expect(input_processor.valid_syntax?('INDEX|pkg|dep|boo|')).to eq false
     end
 
     it 'returns false if input has too few pipes' do
-      expect(input_processor.valid_syntax?("INDEX|pkg dep")).to eq false
+      expect(input_processor.valid_syntax?('INDEX|pkg dep')).to eq false
     end
 
     it 'returns true if input is valid' do
-      expect(input_processor.valid_syntax?("INDEX|pkg|dep,dep2")).to eq true
+      expect(input_processor.valid_syntax?('INDEX|pkg|dep,dep2')).to eq true
     end
   end
 
@@ -62,8 +62,7 @@ describe InputProcessor do
     end
 
     it 'returns array if string is not nil' do
-      expect(input_processor.to_array('pkg1,pkg2,pkg3')).to match_array(['pkg1','pkg2','pkg3'])
+      expect(input_processor.to_array('pkg1,pkg2,pkg3')).to match_array(%w(pkg1 pkg2 pkg3))
     end
   end
-  
 end

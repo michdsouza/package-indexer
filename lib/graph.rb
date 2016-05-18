@@ -9,10 +9,10 @@ class Graph
 
   attr_accessor :libraries, :matrix
 
-	def initialize
+  def initialize
     @libraries = []
-		@matrix = []
-	end
+    @matrix = []
+  end
 
   def find(package)
     libraries.index(package)
@@ -23,7 +23,6 @@ class Graph
   end
 
   def absent?(package)
-    !found?(package)    
+    !found?(package)
   end
-
 end

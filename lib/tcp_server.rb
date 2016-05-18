@@ -6,19 +6,18 @@ PORT = 8080
 processor = InputProcessor.new
 mutex = Mutex.new
 
-Socket.tcp_server_loop(PORT) {|socket, _|
-  Thread.new {
+Socket.tcp_server_loop(PORT) do |socket, _|
+  Thread.new do
     begin
       while line = socket.gets
-        mutex.synchronize do  
+        mutex.synchronize do
           socket.print processor.process(line)
         end
       end
     end
-  }
-}
+  end
+end
 
 # README (Build script)
 # Docker
-# Run rubocop
 # Dead comments

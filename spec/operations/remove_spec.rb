@@ -7,9 +7,9 @@ describe Operations::Remove do
   let(:dependency) { 'dependency' }
 
   describe '#remove' do
-    before(:each) do 
+    before(:each) do
       graph.libraries = [dependency, package]
-      graph.matrix = [[],[true]]
+      graph.matrix = [[], [true]]
     end
 
     it 'returns true if package is not indexed' do
@@ -40,7 +40,7 @@ describe Operations::Remove do
   end
 
   describe '#remove_from_matrix' do
-    before(:each) { graph.matrix = [[true, true],[true, true]] }
+    before(:each) { graph.matrix = [[true, true], [true, true]] }
 
     it 'removes row from matrix' do
       expect { graph.remove_from_matrix(1) }.to change(graph.matrix, :length).by(-1)
@@ -51,15 +51,15 @@ describe Operations::Remove do
     end
   end
 
-  describe '#is_dependency?' do
-    before(:each) { graph.matrix = [[],[nil, true],[]] }
-   
+  describe '#dependency?' do
+    before(:each) { graph.matrix = [[], [nil, true], []] }
+
     it 'returns true if package is a dependency' do
-      expect(graph.is_dependency?(1)).to eq true
+      expect(graph.dependency?(1)).to eq true
     end
 
     it 'returns false if package is a dependency' do
-      expect(graph.is_dependency?(0)).to eq false
+      expect(graph.dependency?(0)).to eq false
     end
   end
 end

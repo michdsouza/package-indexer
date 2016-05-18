@@ -1,7 +1,6 @@
 module Operations
   module Query
-  
-    def query(package, dependencies=[])
+    def query(package, _dependencies = [])
       found?(package)
     end
   end
