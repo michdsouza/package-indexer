@@ -2,16 +2,21 @@ require './lib/graph.rb'
 
 class InputProcessor
 
+  OK = "OK\n".freeze
+  FAIL = "FAIL\n".freeze
+  ERROR = "ERROR\n".freeze
+
+  VALID_COMMANDS = %w(INDEX REMOVE QUERY).freeze
+
   def initialize
     @graph ||= Graph.new
   end
 
   def process(input)
-    return "ERROR\n" if invalid?(input)
+    return ERROR if invalid?(input)
 
-    command, package, dependencies = input.chomp.split('|')
-    command_sym = command.downcase.to_sym
-    @graph.respond_to?(command_sym) ? message(@graph.send(command_sym, package, to_array(dependencies))) : "ERROR\n"
+    command, package, dependencies = input.chomp.split("|")
+    VALID_COMMANDS.include?(command) ? message(@graph.send(command.downcase.to_sym, package, to_array(dependencies))) : ERROR
   end
 
   def invalid?(input)
@@ -19,13 +24,11 @@ class InputProcessor
   end
 
   def message(result)
-    return "FAIL\n" unless result
-    "OK\n"
-    # result ? "OK\n" : "FAIL\n"
+    result ? OK : FAIL
   end
 
   def to_array(dependencies)
-    dependencies.nil? ? [] : dependencies.split(',')
+    dependencies.nil? ? [] : dependencies.split(",")
   end
 
 end

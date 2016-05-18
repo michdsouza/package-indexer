@@ -2,15 +2,18 @@ require 'socket'
 require 'thread'
 require './lib/input_processor.rb'
 
+PORT = 8080
 processor = InputProcessor.new
 mutex = Mutex.new
 
-Socket.tcp_server_loop(8080) {|socket, _|
+Socket.tcp_server_loop(PORT) {|socket, _|
   Thread.new {
     begin
       while line = socket.gets
         mutex.synchronize do  
-          socket.print processor.process(line)
+          response = processor.process(line)
+          puts response
+          socket.print response
         end
       end
     end
@@ -18,9 +21,12 @@ Socket.tcp_server_loop(8080) {|socket, _|
 }
 
 # TODO: Refactor & write tests
-# Concurrency = 100
 # Comment code / Add logging
-# README
-# Build script
+# README (Build script)
 
-
+# Fix tests
+# Docker
+# Run rubocop
+# Dead comments
+# Fix the ruby version
+# Remove tcp_client file
