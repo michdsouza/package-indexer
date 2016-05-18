@@ -28,21 +28,21 @@ describe InputProcessor do
     end
   end
 
-  describe '#invalid?' do
-    it 'returns false if input is valid' do
-      expect(input_processor.invalid?("INDEX|pkg|dep\n")).to eq false
+  describe '#valid_syntax?' do
+    it 'returns false if input is nil' do
+      expect(input_processor.valid_syntax?(nil)).to eq false
     end
 
-    it 'returns true when input is nil' do
-      expect(input_processor.invalid?(nil)).to eq true
+    it 'returns false if input has extra pipes' do
+      expect(input_processor.valid_syntax?("INDEX|pkg|dep|boo|")).to eq false
     end
 
-    it 'returns true when input is incorrectly formatted' do
-      expect(input_processor.invalid?("INDEX|pkg dep")).to eq true
+    it 'returns false if input has too few pipes' do
+      expect(input_processor.valid_syntax?("INDEX|pkg dep")).to eq false
     end
 
-    xit 'returns true when input has extra pipes' do
-      expect(input_processor.invalid?("INDEX|pkg|dep|boo")).to eq true
+    it 'returns true if input is valid' do
+      expect(input_processor.valid_syntax?("INDEX|pkg|dep,dep2")).to eq true
     end
   end
 

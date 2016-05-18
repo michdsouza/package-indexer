@@ -13,14 +13,20 @@ class InputProcessor
   end
 
   def process(input)
-    return ERROR if invalid?(input)
+    return ERROR unless valid_syntax?(input)
 
     command, package, dependencies = input.chomp.split("|")
-    VALID_COMMANDS.include?(command) ? message(@graph.send(command.downcase.to_sym, package, to_array(dependencies))) : ERROR
+    valid_command?(command) ? message(@graph.send(symbolize(command), package, to_array(dependencies))) : ERROR
   end
 
-  def invalid?(input)
-    input.nil? || input !~ /(.+)\|(.+)\|(.*)/
+  def valid_syntax?(input)
+    !input.nil? && 
+    input.count("|") == 2 && 
+    !!(input =~ /(.+)\|(.+)\|(.*)/)
+  end
+
+  def valid_command?(command)
+    VALID_COMMANDS.include?(command)
   end
 
   def message(result)
@@ -29,6 +35,12 @@ class InputProcessor
 
   def to_array(dependencies)
     dependencies.nil? ? [] : dependencies.split(",")
+  end
+
+  private 
+
+  def symbolize(command)
+    command.downcase.to_sym
   end
 
 end

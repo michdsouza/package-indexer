@@ -11,22 +11,14 @@ Socket.tcp_server_loop(PORT) {|socket, _|
     begin
       while line = socket.gets
         mutex.synchronize do  
-          response = processor.process(line)
-          puts response
-          socket.print response
+          socket.print processor.process(line)
         end
       end
     end
   }
 }
 
-# TODO: Refactor & write tests
-# Comment code / Add logging
 # README (Build script)
-
-# Fix tests
 # Docker
 # Run rubocop
 # Dead comments
-# Fix the ruby version
-# Remove tcp_client file
