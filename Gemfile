@@ -1,10 +1,10 @@
-source 'https://rubygems.org'
+source "https://rubygems.org"
 
 group :development do
-  gem 'pry-byebug'
-  gem 'rubocop'
+  gem "pry-byebug"
+  gem "rubocop"
 end
 
 group :test do
-  gem 'rspec'
+  gem "rspec"
 end

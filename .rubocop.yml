@@ -7,5 +7,8 @@ Lint/AssignmentInCondition:
 Metrics/LineLength:
   Max: 120
 
+StringLiterals:
+  EnforcedStyle: double_quotes
+ 
 Style/DoubleNegation:
   Enabled: false

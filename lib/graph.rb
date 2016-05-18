@@ -1,6 +1,6 @@
-require './lib/operations/index.rb'
-require './lib/operations/remove.rb'
-require './lib/operations/query.rb'
+require "./lib/operations/index.rb"
+require "./lib/operations/remove.rb"
+require "./lib/operations/query.rb"
 
 class Graph
   include Operations::Index

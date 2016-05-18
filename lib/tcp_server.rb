@@ -1,6 +1,6 @@
-require 'socket'
-require 'thread'
-require './lib/input_processor.rb'
+require "socket"
+require "thread"
+require "./lib/input_processor.rb"
 
 PORT = 8080
 processor = InputProcessor.new
@@ -17,7 +17,3 @@ Socket.tcp_server_loop(PORT) do |socket, _|
     end
   end
 end
-
-# README (Build script)
-# Docker
-# Dead comments
