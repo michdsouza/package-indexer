@@ -40,6 +40,10 @@ describe InputProcessor do
     it 'returns true when input is incorrectly formatted' do
       expect(input_processor.invalid?("INDEX|pkg dep")).to eq true
     end
+
+    xit 'returns true when input has extra pipes' do
+      expect(input_processor.invalid?("INDEX|pkg|dep|boo")).to eq true
+    end
   end
 
   describe '#message' do
