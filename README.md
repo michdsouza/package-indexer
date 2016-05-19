@@ -1,8 +1,8 @@
 # Package Indexer
 
-This simple package indexer has been built in Ruby and accepts connections from concurrent clients on port 8080. This has been tested with the test suite provided, as captured in the gif below.
+This simple package indexer has been built in Ruby and accepts connections from concurrent clients on port 8080. This has been tested with the test suite provided, as captured in the video below.
 
-[![asciicast](https://asciinema.org/a/4fz2shzizionrzqtciyzq7lwf.png)](https://asciinema.org/a/4fz2shzizionrzqtciyzq7lwf)
+[![asciicast](https://asciinema.org/a/4fz2shzizionrzqtciyzq7lwf.png)](https://asciinema.org/a/4fz2shzizionrzqtciyzq7lwf?autoplay=1)
 
 ## Setup
 
@@ -44,9 +44,3 @@ The current implementation is an in-memory graph. No external persistence was im
 The <b>InputProcessor</b> class is used to validate, split and process commands.
 
 The TCP Server was the simplest possible implementation to satisfy the 100x concurrency requirement. The thread synchronization via Mutex is simple but could be further tweaked if performance requirements warrant.
-
-
-
-
-
-
