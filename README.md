@@ -1,6 +1,6 @@
 # Package Indexer
 
-This simple package indexer has been built in Ruby and accepts connections from concurrent clients on port 8080. This has been tested with the test suite provided, as captured in the video below.
+This simple package indexer has been built in Ruby and accepts connections from concurrent clients on port 8080. This has been tested with a test suite written in Go, as captured in the video below.
 
 [![asciicast](https://asciinema.org/a/4fz2shzizionrzqtciyzq7lwf.png)](https://asciinema.org/a/4fz2shzizionrzqtciyzq7lwf?autoplay=1)
 
