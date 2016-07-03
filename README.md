@@ -43,4 +43,4 @@ The current implementation is an in-memory graph. No external persistence was im
 
 The <b>InputProcessor</b> class is used to validate, split and process commands.
 
-The TCP Server was the simplest possible implementation to satisfy the 100x concurrency requirement. The thread synchronization via Mutex is simple but could be further tweaked if performance requirements warrant.
+The TCP Server was the simplest possible implementation to satisfy 100x concurrency, along with thread synchronization via Mutex.
